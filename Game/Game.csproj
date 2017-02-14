@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Assets\Player\playerMove.cs" />
     <Compile Include="Assets\asteroids\asteroid.cs" />
+    <Compile Include="Assets\asteroids\genAsteroids.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

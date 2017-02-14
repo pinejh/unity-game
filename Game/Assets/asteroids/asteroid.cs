@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class asteroid : MonoBehaviour {
+public class asteroid : MonoBehaviour
+{
 
     public GameObject ast;
     public PolygonCollider2D polyCol;
@@ -12,13 +13,19 @@ public class asteroid : MonoBehaviour {
 
     private playerMove player;
 
-	void Start () {
+	void Start ()
+    {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<playerMove>();
 	}
 	
 	
-	void Update () {
+	void Update ()
+    {
         ast.transform.Translate(0, -speed/speedScale, 0);
+        if (ast.transform.position.y <= -11)
+        {
+            destroy();
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D other)

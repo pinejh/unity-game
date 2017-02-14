@@ -9,6 +9,7 @@ public class playerMove : MonoBehaviour
     public GameObject player;
     public SpriteRenderer sprite;
     public Text uiLives;
+    public Text uiScore;
 
     public float moveSpeed;
     private float speedScale = 20;
@@ -22,15 +23,21 @@ public class playerMove : MonoBehaviour
     private int invTimer;
     private bool isInv = false;
 
+    public float timer;
+    private float score;
+
 	// Use this for initialization
 	void Start ()
     {
+        timer = 0;
+        score = timer;
         lives = startingLives;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        timer++;
         if(isInv)
         {
             invTimer--;
@@ -57,6 +64,8 @@ public class playerMove : MonoBehaviour
         {
             player.transform.Translate(1 * moveSpeed / speedScale, 0, 0);
         }
+        score = timer / 10;
+        uiScore.text = "Score: " + Mathf.FloorToInt(score);
     }
 
     public void takeDamage()
@@ -113,11 +122,7 @@ public class playerMove : MonoBehaviour
         {
             keyUp(KeyCode.D);
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            takeDamage();
-        }
+        
     }
 
 }
