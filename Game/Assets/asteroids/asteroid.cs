@@ -22,7 +22,7 @@ public class asteroid : MonoBehaviour
 	void Update ()
     {
         ast.transform.Translate(0, -speed/speedScale, 0);
-        if (ast.transform.position.y <= -11)
+        if (ast.transform.position.y <= -6)
         {
             destroy();
         }

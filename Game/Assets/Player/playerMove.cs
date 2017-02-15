@@ -58,11 +58,21 @@ public class playerMove : MonoBehaviour
         keyHandle();
         if (left && !right)
         {
-            player.transform.Translate(-1 * moveSpeed / speedScale, 0, 0);
+            Vector3 newPlayer = new Vector3(player.transform.position.x - .77f, player.transform.position.y, player.transform.position.z);
+            Vector3 tempPos = Camera.main.WorldToScreenPoint(newPlayer);
+            if (tempPos.x + -1 * moveSpeed / speedScale >= 0)
+            {
+                player.transform.Translate(-1 * moveSpeed / speedScale, 0, 0);
+            }
         }
         if (right && !left)
         {
-            player.transform.Translate(1 * moveSpeed / speedScale, 0, 0);
+            Vector3 newPlayer = new Vector3(player.transform.position.x + .77f, player.transform.position.y, player.transform.position.z);
+            Vector3 tempPos = Camera.main.WorldToScreenPoint(newPlayer);
+            if (tempPos.x + 1 * moveSpeed / speedScale <= Screen.width)
+            {
+                player.transform.Translate(1 * moveSpeed / speedScale, 0, 0);
+            }
         }
         score = timer / 10;
         uiScore.text = "Score: " + Mathf.FloorToInt(score);

@@ -25,7 +25,7 @@ public class genAsteroids : MonoBehaviour
 
     void genAsteroid()
     {
-        GameObject ast = Instantiate(asteroid, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        GameObject ast = Instantiate(asteroid, new Vector3(transform.position.x + Random.Range(-6.5f, 6.5f), transform.position.y, transform.position.z), Quaternion.identity);
         ast.transform.parent = self.transform;
     }
 
