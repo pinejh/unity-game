@@ -37,7 +37,10 @@ public class playerMove : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        //Increment timer
         timer++;
+
+        //Sprite animator if currently invincible
         if(isInv)
         {
             invTimer--;
@@ -54,30 +57,52 @@ public class playerMove : MonoBehaviour
                 isInv = false;
             }
         }
+
+        //Update lives on screen
         uiLives.text = "Lives: " + lives;
+
+        //Update user input
         keyHandle();
+
+        /*Processing user input*/
+        //Side wall collisions for player
+
+        //Movement towards the left
         if (left && !right)
-        {
+        {   
+            //Vector for player
             Vector3 newPlayer = new Vector3(player.transform.position.x - .77f, player.transform.position.y, player.transform.position.z);
             Vector3 tempPos = Camera.main.WorldToScreenPoint(newPlayer);
+
+            //Check to see if moving left would stay onscreen
             if (tempPos.x + -1 * moveSpeed / speedScale >= 0)
             {
                 player.transform.Translate(-1 * moveSpeed / speedScale, 0, 0);
             }
         }
+
+        //Movement towards the right
         if (right && !left)
         {
+            //Vector for player
             Vector3 newPlayer = new Vector3(player.transform.position.x + .77f, player.transform.position.y, player.transform.position.z);
             Vector3 tempPos = Camera.main.WorldToScreenPoint(newPlayer);
+
+            //Check to see if moving left would stay onscreen
             if (tempPos.x + 1 * moveSpeed / speedScale <= Screen.width)
             {
                 player.transform.Translate(1 * moveSpeed / speedScale, 0, 0);
             }
         }
+
+        //Update score variable
         score = timer / 10;
+
+        //Update score text on screen
         uiScore.text = "Score: " + Mathf.FloorToInt(score);
     }
 
+    /*Method run upon collision of an asteriod*/
     public void takeDamage()
     {
         if (!isInv)
@@ -88,6 +113,7 @@ public class playerMove : MonoBehaviour
         }
     }
 
+    /*Method that updates key variables to true*/
     void keyDown(KeyCode k)
     {
         switch (k)
@@ -101,6 +127,7 @@ public class playerMove : MonoBehaviour
         }
     }
 
+    /*Method that updates key variables to false*/
     void keyUp(KeyCode k)
     {
         switch (k)
@@ -114,6 +141,7 @@ public class playerMove : MonoBehaviour
         }
     }
 
+    /*Method that takes user input*/
     void keyHandle()
     {
         if (Input.GetKeyDown(KeyCode.A))
