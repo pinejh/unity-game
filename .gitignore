@@ -1,6 +1,6 @@
 #Temp and Library
-Game/Library/*
-Game/Temp/*
+Game/Library
+Game/Temp
 
 #OS junk files
 [Tt]humbs.db
